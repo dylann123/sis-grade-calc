@@ -36,6 +36,7 @@ function calculateGrade(){
         }
     }
     currentGrade = parseFloat(currentGrade).toFixed(2)
+    console.log(currentGrade)
 }
 function addGrade(category, gainedPoints, maxPoints){
     if(!pointsData[category]) {
