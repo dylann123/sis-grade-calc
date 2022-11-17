@@ -53,4 +53,5 @@ function reset(){
     calculateGrade()
     console.log(`You have a ${currentGrade}% in this class`)
 }
+console.log("Successfully loaded SIS grade calculator")
 reset()
