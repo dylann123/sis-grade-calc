@@ -36,19 +36,21 @@ function calculateGrade(){
         }
     }
     currentGrade = parseFloat(currentGrade).toFixed(2)
-    console.log(currentGrade)
 }
-function addGrade(category, gainedPoints, maxPoints){
-    if(!pointsData[category]) {
-        alert(`Invalid category ${category}.`)
+function addGrade(category,gainedPoints,maxPoints){
+    if(pointsData[category] == undefined) {
+        console.log(`Invalid category ${category}.`)
         return
     }else{
         pointsData[category].currentPoints += gainedPoints
         pointsData[category].maxPoints += maxPoints
     }
     calculateGrade()
-    console.log(currentGrade)
+    console.log("If you add "+gainedPoints+"/"+maxPoints+" to your "+category+" grade, you get a "+currentGrade+"%")
 }
-parseData()
-calculateGrade()
-console.log(`You have a ${currentGrade}% in this class`)
+function reset(){
+    parseData()
+    calculateGrade()
+    console.log(`You have a ${currentGrade}% in this class`)
+}
+reset()
