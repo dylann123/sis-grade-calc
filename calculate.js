@@ -4,6 +4,7 @@ let pointsData = {}
 let currentGrade = 0
 function parseData(){
     for(let i in dataParsed){
+        console.log("Found category "+dataParsed[i]["Category"])
         pointsData[dataParsed[i]["Category"]] = {}
         pointsData[dataParsed[i]["Category"]] = {
             currentPoints: 0,
@@ -12,10 +13,12 @@ function parseData(){
         }
     }
     [...document.getElementsByClassName("dx-row dx-data-row dx-column-lines")].forEach(row=>{
-        let categoryType = row.children[3].innerHTML
-        if(!row.children[7].innerHTML.includes("Points")){
-            let earnedpoints = parseFloat(row.children[7].innerHTML.split("/")[0])
-            let totalpoints = parseFloat(row.children[7].innerHTML.split("/")[1])
+        let categoryType = row.children[3].innerText
+        console.log("Loading category "+categoryType)
+        if(!row.children[7].innerText.includes("Points")){
+            let earnedpoints = parseFloat(row.children[7].innerText.split("/")[0])
+            let totalpoints = parseFloat(row.children[7].innerText.split("/")[1])
+            console.log(pointsData[categoryType])
             pointsData[categoryType].currentPoints += earnedpoints
             pointsData[categoryType].maxPoints += totalpoints
         }
@@ -53,5 +56,5 @@ function reset(){
     calculateGrade()
     console.log(`You have a ${currentGrade}% in this class`)
 }
-console.log("Successfully loaded SIS grade calculator")
 reset()
+console.log("Successfully loaded SIS grade calculator")
