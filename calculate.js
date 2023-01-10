@@ -7,22 +7,11 @@ function parseData(){
         console.log("Found category "+dataParsed[i]["Category"])
         pointsData[dataParsed[i]["Category"]] = {}
         pointsData[dataParsed[i]["Category"]] = {
-            currentPoints: 0,
-            maxPoints: 0,
+            currentPoints: dataParsed[i].TotalPoints,
+            maxPoints: dataParsed[i].TotalPossible,
             pctOfGrade: dataParsed[i]["PctOfGrade"]
         }
     }
-    [...document.getElementsByClassName("dx-row dx-data-row dx-column-lines")].forEach(row=>{
-        let categoryType = row.children[3].innerText
-        console.log("Loading category "+categoryType)
-        if(pointsData[categoryType] != undefined && !row.children[7].innerText.includes("Points")){
-            let earnedpoints = parseFloat(row.children[7].innerText.split("/")[0])
-            let totalpoints = parseFloat(row.children[7].innerText.split("/")[1])
-            console.log(pointsData[categoryType])
-            pointsData[categoryType].currentPoints += earnedpoints
-            pointsData[categoryType].maxPoints += totalpoints
-        }
-    })
 }
 
 function calculateGrade(){
