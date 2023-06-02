@@ -44,6 +44,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 	console.log("Successfully loaded SIS grade calculator")
 	console.log(pointsData)
 
+	let oldGrade = currentGrade
 	let container = document.createElement("div")
 	container.id = "studentvue-calc"
 	container.style.width = "180px"
@@ -57,8 +58,10 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 	container.style.padding = "5px"
 	container.innerHTML = `<b>Grade Calculator</b>
 	<br>
-	Current Grade: <span id="pct-disp">${currentGrade}%</span>
-	
+	Current Grade: ${oldGrade}%
+	<br>
+	Modded Grade: <span id="pct-disp">${currentGrade}%</span>
+	<br>
 	Points: <span id="points-disp">${dataParsed[dataParsed.length - 1]["TotalPoints"]}/${dataParsed[dataParsed.length - 1]["TotalPossible"]}</span>
 	<br>
 	`
