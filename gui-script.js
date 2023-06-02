@@ -47,7 +47,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 	let oldGrade = currentGrade
 	let container = document.createElement("div")
 	container.id = "studentvue-calc"
-	container.style.width = "180px"
+	container.style.width = "300px"
 	container.style.height = "310px"
 	container.style.border = "1px black solid"
 	container.style.position = "fixed"
@@ -56,6 +56,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 	container.style.right = "20px"
 	container.style.top = "20px"
 	container.style.padding = "5px"
+    container.style.opacity = 0.5
 	container.innerHTML = `<b>Grade Calculator</b>
 	<br>
 	Current Grade: ${oldGrade}%
@@ -66,11 +67,19 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 	<br>
 	`
 
+    container.addEventListener('mouseenter', () => {
+        container.style.opacity = 1
+    })
+    container.addEventListener('mouseleave', () => {
+        container.style.opacity = 0.5
+    })
+
+
 	let calculateGradeButton = document.createElement("button")
 	calculateGradeButton.innerText = "Calculate"
 	calculateGradeButton.style.position = "fixed"
 	calculateGradeButton.style.top = container.style.height.replace("px", "") - 12 + "px"
-	calculateGradeButton.style.right = "120px"
+	calculateGradeButton.style.right = container.style.width.replace("px", "") - 60 + "px"
 	calculateGradeButton.addEventListener('click', () => {
 		reset()
 		for(let i of document.getElementsByClassName("addgrade-line")){
@@ -106,7 +115,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 			plusButton.disabled = true
 		let addGradeLine = document.createElement("div")
 		addGradeLine.className = "addgrade-line"
-		addGradeLine.style.width = "160px"
+		addGradeLine.style.width = container.style.width.replace("px", "") - 15 + "px"
 		addGradeLine.style.height = "30px"
 		addGradeLine.style.paddingTop = "2px"
 		addGradeLine.style.paddingLeft = "5px"
@@ -114,6 +123,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 
 		let pointsAdd = document.createElement("input")
 		pointsAdd.className = "earned-points"
+        pointsAdd.placeholder = "Earned"
 		pointsAdd.style.width = "40px"
 		pointsAdd.style.height = "25px"
 		pointsAdd.style.margin = "0px"
@@ -125,6 +135,7 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 
 		let pointsTotal = document.createElement("input")
 		pointsTotal.className = "total-points"
+        pointsTotal.placeholder = "Total"
 		pointsTotal.style.width = "40px"
 		pointsTotal.style.height = "25px"
 		pointsTotal.style.margin = "0px"
@@ -132,7 +143,6 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 
 		let typeDropdown = document.createElement("select")
 		typeDropdown.className = "type-dropdown"
-		typeDropdown.style.width = "60px"
 		typeDropdown.style.height = "25px"
 		for(let i of dataParsed){
 			if(i["Category"] == "TOTAL") break
