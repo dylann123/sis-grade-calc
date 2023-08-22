@@ -172,8 +172,9 @@ if (document.getElementById("ctl00_CategoryWeights") != null) {
 
 } else {
 	if (window.location.href.indexOf("Gradebook.aspx") > -1)
-		console.log("Open a class to view grade calculator")
+		alert("pls open class")
 	else
     		window.location.href = "https://sisstudent.fcps.edu/SVUE/PXP2_Gradebook.aspx"
 	loaded = false
 }
+alert("wokrign!")
